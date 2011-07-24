@@ -8,7 +8,7 @@ class IndexController extends Zend_Controller_Action
         /* Initialize action controller here */
 	$s = new Zend_Session_Namespace();
 
-	var_dump($s);
+	/* var_dump($s); */
 
 	if (!isset($s->counter))
 		$s->counter = 1000;
