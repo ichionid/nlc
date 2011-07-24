@@ -19,6 +19,14 @@ class AuthController extends Zend_Controller_Action
 
 	/* TODO: initialize loginForm elsewhere? */
 
+	$auth = Zend_Auth::getInstance();
+
+	// Just redirect back to Index/index if already logged in
+	if ($auth->hasIdentity()) {
+		$this->_redirect('/');
+		return;
+	}
+
 	$loginForm = new Application_Form_Login();
 
 	if ($this->getRequest()->isPost() &&
@@ -34,8 +42,6 @@ class AuthController extends Zend_Controller_Action
 
 		$adapter->setIdentity($loginForm->getValue('username'));
 		$adapter->setCredential($loginForm->getValue('password'));
-
-		$auth = Zend_Auth::getInstance();
 
 		$result = $auth->authenticate($adapter);
 
