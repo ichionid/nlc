@@ -23,7 +23,22 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        
     }
 
+    public function loggedInUser()
+    {
+	$auth = Zend_Auth::getInstance();
+
+	if ($auth->hasIdentity()) {
+		$user = $auth->getIdentity();
+
+		$string = "Logged in as $user";
+
+	} else {
+		$string = "Not logged in";
+	}
+
+	return $string;
+    }
 }

@@ -12,7 +12,21 @@ echo $this->doctype(); ?>
 </head>
 <body>
 	<div id="header">
-		NEW LIFE COPENHAGEN
+		NEW LIFE COPENHAGEN |
+		<?php
+			$auth = Zend_Auth::getInstance();
+
+			if ($auth->hasIdentity()) {
+				$user = $auth->getIdentity();
+				echo "Logged in as $user | <a href=\"";
+				echo $this->url(array('controller' => 'auth', 'action' => 'logout'));
+				echo "\">logout</a>";
+			} else {
+				echo "<a href=\"";
+				echo $this->url(array('controller' => 'auth', 'action' => 'login'));
+				echo "\">log in</a>";
+			}
+		?>
 	</div>
 	<div id="content">
 		<?php echo $this->layout()->content; ?>
