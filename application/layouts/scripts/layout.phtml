@@ -11,14 +11,17 @@ echo $this->doctype(); ?>
 	<?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/site.css'); ?>
 </head>
 <body>
-	<div id="header">
-		NEW LIFE COPENHAGEN | <?php echo $this->loggedInUser(); ?>
+	<div id="siteheader">
+		NEW LIFE COPENHAGEN
+	</div>
+	<div id="sitenav">
+		Home |
+		Search |
+		Admin |
+		<?php echo $this->loggedInUser(); ?>
 	</div>
 	<div id="content">
 		<?php echo $this->layout()->content; ?>
-	</div>
-	<div id="footer">
-		The footer | <?php echo $this->userAgent()->getUserAgent(); ?>
 	</div>
 </body>
 </html>

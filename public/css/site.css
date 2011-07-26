@@ -1,4 +1,26 @@
 html, body {
 	margin: 0px;
 	padding: 0px;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+#siteheader {
+	background-color: #00BF16;
+	color: white;
+	display: block;
+	font-size: 30px;
+	font-weight: bold;
+	padding: 3px 0 3px 10px;
+	margin: 10px 0px 20px 0px;
+}
+	#siteheader a {
+		color: #ccc;
+	}
+
+#sitenav {
+	font-size: 70%;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
 }
