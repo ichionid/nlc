@@ -23,6 +23,10 @@ All "entries" in this diary MUST be of a certain form (for consistency).
 
 ## DIARY
 
+### 27/07/2011 | Zend_Acl
+
+At the time of writing I'm working on the admin module, trying to get Zend_Acl to reject anyone trying to access the /admin module (and anything in that subtree), who's not logged in AND not use 'thomas' (he's admin for now).
+
 ### 27/07/2011 | Admin module
 
 I have decided to create an admin module as the functionality of the admin section of the site should be separate from the users'. The following commands were issued:

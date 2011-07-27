@@ -15,9 +15,15 @@ echo $this->doctype(); ?>
 		NEW LIFE COPENHAGEN
 	</div>
 	<div id="sitenav">
-		Home |
+		<a href="<?php echo $this->url(array(
+			'module' => 'default',
+			'controller' => 'index',
+			'action' => 'index')); ?>">Home</a> |
 		Search |
-		Admin |
+		<a href="<?php echo $this->url(array(
+			'module' => 'admin',
+			'controller' => 'index',
+			'action' => 'index')); ?>">admin</a> |
 		<?php echo $this->loggedInUser(); ?>
 	</div>
 	<div id="content">
