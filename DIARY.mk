@@ -6,7 +6,7 @@ Welcome to the developer diary, documenting the development experience(s) of the
 
 ## Markdown
 
-This document SHOULD be formatted in the Markdown format (see [Markdown] for specifics), or just stick to the form laid down in this file. Double hash (##) results in a level 2 header (corresponds to `<h2>...</h2>` in HTML). Listing should be done with `*`, `+` or `-` for unorderedlists and numbered (1., 2., 3., etc.) for -- wait for it -- numbered lists.
+This document SHOULD be formatted in the Markdown format (see [Markdown] for specifics), or just stick to the form laid down in this file. Double hash (`##`) results in a level 2 header (corresponds to `<h2>...</h2>` in HTML). Listing should be done with `*`, `+` or `-` for unorderedlists and numbered (1., 2., 3., etc.) for -- wait for it -- numbered lists.
 
 If in doubt consult the documentation.
 
