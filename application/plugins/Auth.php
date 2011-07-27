@@ -22,6 +22,7 @@ class Application_Plugin_Auth extends Zend_Controller_Plugin_Abstract {
 		$loginAction	 = 'login';
 		$auth		 = Zend_Auth::getInstance();
 
+		/* TODO: Interact with the user database here to retrieve role */ 
 		if (!$auth->hasIdentity()) {
 			$role = 'guest';
 		/*	$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('Redirector');
