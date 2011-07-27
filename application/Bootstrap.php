@@ -34,11 +34,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		/* Deny the user fewer things (more to come) */
 		$nlc_acl->deny('user', 'admin');
+
+		/* Store the ACL */
+		$registry = Zend_Registry::getInstance();
+		$registry->set('acl',$nlc_acl);
 	}
-	
+
 	protected function _init_session()
 	{
 		Zend_Session::start();
+	}
+
+	protected function _init_plugins()
+	{
+		$front = Zend_Controller_Front::getInstance();
+		$front->registerPlugin(new Application_Plugin_Auth(Zend_Registry::getInstance()->get('acl')));
 	}
 }
 
