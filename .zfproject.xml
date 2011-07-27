@@ -31,14 +31,22 @@
         <moduleDirectory moduleName="admin">
           <apisDirectory enabled="false"/>
           <configsDirectory enabled="false"/>
-          <controllersDirectory/>
+          <controllersDirectory>
+            <controllerFile controllerName="Index">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+          </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
           <modelsDirectory/>
           <viewsDirectory>
-            <viewScriptsDirectory/>
+            <viewScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+            </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
