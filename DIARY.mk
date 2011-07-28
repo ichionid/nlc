@@ -23,6 +23,30 @@ All "entries" in this diary MUST be of a certain form (for consistency).
 
 ## DIARY
 
+### 28/07/2011 | Styling
+
+Changes:
+ + login form now has styling in nlc/public/css/site.css. This styling is specific to the login form, but some elements could be generalised
+ + class SiteNavigation in nlc/application/views/helpers/SiteNavigation.php is tidier. Introduced __construct() and a few helper functions.
+ + text shadow has been added to the siteheader (CSS)
+ + in nlc/application/layouts/scripts/layout.phtml: the pipe '|' between siteNavigation() and loggedInUser() is inserted here. The functions siteNavigation() and loggedInUser() should never {ap,pre}prend '|'.
+ + links are styled globally (this may need to change).
+
+### 28/07/2011 | 'admin-module' merged into 'master'
+
+I merged the 'admin-module' branch into the the 'master' branch - the module seems stable enough so we can allow further development to take place in the 'master' branch.
+
+### 28/07/2011 | Database definition
+
+I began working on a better database definition for the project, namely the users database. There are some resources on MySQL databases worth remembering:
+
+ + MySQL 5.1 Reference Manual: http://dev.mysql.com/doc/refman/5.1/en/
+ + Web developer notes (has other tutorials):
+   http://www.webdevelopersnotes.com/tutorials/sql/mysql_online_tutorial_column_types_part_2.php3
+ + About database design mistakes: http://www.simple-talk.com/sql/database-administration/ten-common-database-design-mistakes/
+
+For now I've created a 'scripts' folder at nlc/, which contains 'schema.mysql.sql' that defines the database from scratch (creating database, tables, users, privileges, etc). I created a git branch 'database' to work out the database without affecting the rest of development. The idea is to integrate the new database design fully before merging into master.
+
 ### 27/07/2011 | Zend_Acl
 
 At the time of writing I'm working on the admin module, trying to get Zend_Acl to reject anyone trying to access the /admin module (and anything in that subtree), who's not logged in AND not use 'thomas' (he's admin for now).

@@ -17,28 +17,12 @@ class Zend_View_Helper_SiteNavigation extends Zend_View_Helper_Abstract {
 
 	public function __construct()
 	{
-		$this->home = 	$this->default_module(array(
-				'controller' 	=> 'index',
-				'action' 	=> 'index'
-				));
-		$this->login = 	$this->default_module(array(
-				'controller' 	=> 'auth',
-				'action' 	=> 'login'
-				));
-		$this->logout = $this->default_module(array(
-				'controller'	=> 'auth',
-				'action'	=> 'logout'
-				));
-		$this->search = null;	/* not started yet */
-		$this->about =	$this->default_module(array(
-				'controller'	=> 'about',
-				'action'	=> 'index'
-				));
-		$this->admin =	array(
-				'module'	=> 'admin',
-				'controller'	=> 'index',
-				'action'	=> 'index'
-				);
+		$this->home 	= $this->url_ary_default('index', 'index');
+		$this->login 	= $this->url_ary_default('auth', 'login');
+		$this->logout 	= $this->url_ary_default('auth', 'logout');
+		$this->search 	= null;	/* not started yet */
+		$this->about 	= $this->url_ary_default('about', 'index');
+		$this->admin 	= $this->url_ary('admin', 'index', 'index');
 	}
 
 	public function setView(Zend_View_Interface $view)
@@ -70,11 +54,46 @@ class Zend_View_Helper_SiteNavigation extends Zend_View_Helper_Abstract {
 
 	}
 
+	/**
+	 * Convenience functions: url_ary formats an array from the given arguments.
+	 * 
+	 * Example:
+	 * 	url_ary('default', 'auth', 'login');
+	 *	#=>
+	 *		array(	'module' => 'default',
+	 *			'controller' => 'auth',
+	 *			'action' => 'login');
+	 *
+	 * This is so you don't have to type these arrays everywhere.
+	 *
+	 */
+	private function url_ary($module, $controller, $action)
+	{
+		return 	array(
+			'module'	=> $module,
+			'controller'	=> $controller,
+			'action'	=> $action);
+	}
+
+	private function url_ary_default($controller, $action)
+	{
+		return $this->url_ary('default', $controller, $action);
+	}
+
+	/**
+	 * Convenience function. For links in the default module, just supply the
+	 * action and controller in an array to this function.
+	 */
 	private function default_module(array $ary)
 	{
 		return array_merge(array('module' => 'default'), $ary);
 	}
 
+	/**
+	 * Create a link tag from the given url array. If $url is null just
+	 * return the given name. Otherwise a HTML link tag with formatted url
+	 * is returned with $name as link text.
+	 */
 	private function a(array $url = null, $name)
 	{
 		if (is_null($url))
