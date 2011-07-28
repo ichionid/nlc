@@ -22,7 +22,7 @@ div#content {
 	padding: 3px 0 3px 10px;
 	margin: 10px 0px 10px 0px;
 /* 	text-shadow: color X-coordinate Y-coordinate blur-radius(pixels) */
-	text-shadow: #020 1px 1px 4px;
+	text-shadow: #020 1px 1px 4px; 
 }
 
 #sitenav {

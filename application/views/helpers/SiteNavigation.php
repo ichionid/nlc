@@ -6,36 +6,40 @@
  * 'guest' is assumed.
  *
  * The menus are as follows:
- * 	guest: 	home | login
- *	user:	home | search | logout
- *	admin:	home | search | admin | logout
+ * 	guest: 	home | about
+ *	user:	home | search | about
+ *	admin:	home | search | admin | about
  *
  */
 class Zend_View_Helper_SiteNavigation extends Zend_View_Helper_Abstract {
 
 	protected $_view;
 
-	private $home = array(
-		'module' => 'default',
-		'controller' => 'index',
-		'action' => 'index');
-	
-	private $login = array(
-		'module' => 'default',
-		'controller' => 'auth',
-		'action' => 'login');
-	
-	private $logout = array(
-		'module' => 'default',
-		'controller' => 'auth',
-		'action' => 'logout');
-	
-	private $search = 'search';
-
-	private $admin = array(
-		'module' => 'admin',
-		'controller' => 'index',
-		'action' => 'index');
+	public function __construct()
+	{
+		$this->home = 	$this->default_module(array(
+				'controller' 	=> 'index',
+				'action' 	=> 'index'
+				));
+		$this->login = 	$this->default_module(array(
+				'controller' 	=> 'auth',
+				'action' 	=> 'login'
+				));
+		$this->logout = $this->default_module(array(
+				'controller'	=> 'auth',
+				'action'	=> 'logout'
+				));
+		$this->search = null;	/* not started yet */
+		$this->about =	$this->default_module(array(
+				'controller'	=> 'about',
+				'action'	=> 'index'
+				));
+		$this->admin =	array(
+				'module'	=> 'admin',
+				'controller'	=> 'index',
+				'action'	=> 'index'
+				);
+	}
 
 	public function setView(Zend_View_Interface $view)
 	{
@@ -49,22 +53,32 @@ class Zend_View_Helper_SiteNavigation extends Zend_View_Helper_Abstract {
 		if ($auth->hasIdentity()) {
 			if ($auth->getIdentity() == 'thomas')
 				/* admin */
-				return 	'<a href="' . $this->_view->url($this->home) . '">home</a> | ' .
-					$this->search . ' | ' . 
-					'<a href="' . $this->_view->url($this->admin) . '">admin</a> | ';
+				return 	$this->a($this->home, 'home') . ' | '
+					. $this->a($this->search, 'search') . ' | '
+					. $this->a($this->admin, 'admin') . ' | '
+					. $this->a($this->about, 'about');
 			else
 				/* user */
-				return 	'<a href="' . $this->_view->url($this->home) . '">home</a> | ' .
-					$this->search . ' | ';
+				return 	$this->a($this->home, 'home') . ' | '
+					. $this->a($this->search, 'search') . ' | '
+					. $this->a($this->about, 'about');
 		}
 		else {
-			return 	'<a href="' . $this->_view->url($this->home) . '">home</a> | ';
+			return 	$this->a($this->home, 'home') . ' | '
+				. $this->a($this->about, 'about');
 		}
 
 	}
 
-	private function default_module($ary)
+	private function default_module(array $ary)
 	{
 		return array_merge(array('module' => 'default'), $ary);
+	}
+
+	private function a(array $url = null, $name)
+	{
+		if (is_null($url))
+			return $name;
+		return '<a href="' . $this->_view->url($url) . '">' . $name . '</a>';
 	}
 }

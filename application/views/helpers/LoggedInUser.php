@@ -15,12 +15,13 @@ class Zend_View_Helper_LoggedInUser extends Zend_View_Helper_Abstract
 
 		if ($auth->hasIdentity()) {
 			$user = $auth->getIdentity();
-			$str = 	'Logged in as ' . $user . ' | <a href="' .
+
+			$str = 	'<a href="' .
 				$this->_view->url(array(
 					'module' => 'default',
 					'controller' => 'auth',
 					'action' => 'logout')) .
-				'">log out</a>';
+				'">log out</a> (' . $user . ')';
 		} else {
 			$str = 	'<a href="' .
 				$this->_view->url(array('module' => 'default', 'controller' => 'auth', 'action' => 'login')) .
