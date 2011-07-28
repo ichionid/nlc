@@ -1,9 +1,11 @@
+/* Global reset */
 html, body {
 	margin: 0px;
 	padding: 0px;
 	font-family: Verdana, Arial, sans-serif;
 }
 
+/* The content div - see application/layouts/scripts/layout.phtml */
 div#content {
 	width: 80%;
 	margin-left: auto;
@@ -18,16 +20,71 @@ div#content {
 	font-size: 30px;
 	font-weight: bold;
 	padding: 3px 0 3px 10px;
-	margin: 10px 0px 20px 0px;
+	margin: 10px 0px 10px 0px;
+/* 	text-shadow: color X-coordinate Y-coordinate blur-radius(pixels) */
+	text-shadow: #020 1px 1px 4px;
 }
-	#siteheader a {
-		color: #ccc;
-	}
 
 #sitenav {
 	font-size: 70%;
-	font-weight: bold;
+/*	font-weight: bold;*/
 	text-align: center;
-	text-transform: uppercase;
+/*	text-transform: uppercase; */
 	display: block;
 }
+
+a, a:visited {
+	text-decoration: none;
+	color: #00bf16;	/* dark green? */
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+/**
+ * The login form
+ * 
+ * In the view script (application/views/scripts/auth/login.phtml) the
+ * $this->loginForm is echo'ed wrapped in a div tag with id 'loginform'
+ *
+ * Forms in ZF are presented in definition lists (dl) tags with dt and dd
+ * acting as term and definition respectively. The following just sets the
+ * style for the loginform, but it could be applied on a wider scale.
+ */
+#loginform {
+	border: 2px solid #ccc;
+	width: 300px;
+	margin: 1em auto 0 auto;
+	font-size: 85%;
+}
+
+	#loginform dl {
+		margin: 0.5em;
+		width: 290px;
+	}
+
+	#loginform dt {
+		float: left; 
+		clear: left;
+		height: 21px;
+/*		margin-top: 3px;
+		margin-bottom: 4px; */
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+	#loginform dd {
+		text-align: right;
+	}
+
+	#loginform input#username, input#password {
+		/* Be specific here otherwise the submit button also changes */
+		border: 2px solid #ccc;
+	}
+
+	#loginform label {
+		display: block;
+		margin: 4px 0;
+	}
