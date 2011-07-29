@@ -23,6 +23,18 @@ All "entries" in this diary MUST be of a certain form (for consistency).
 
 ## DIARY
 
+### 29/07/2011 | Deleting remote branch in git
+
+I wanted to delete my branch 'admin-module', which is _very_ easy to do locally:
+
+    $ git branch -d admin-module
+
+Then `git help branch` should tell me how to delete the remote branch and I found the flag `-r`, but it did not work. A quick search on Google reveals the syntax to be a little different (haven't found out why, but this worked anyhow):
+
+    $ git push origin :admin-module
+
+The effect of the colon is, as of now, unknown to me.
+
 ### 28/07/2011 | Styling
 
 Changes:
