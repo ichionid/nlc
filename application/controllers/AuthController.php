@@ -17,6 +17,8 @@ class AuthController extends Zend_Controller_Action
     {
         $db = $this->_getParam('db');
 
+	var_dump($db);	/* ??? displays as NULL */
+
 	/* TODO: initialize loginForm elsewhere? */
 
 	$auth = Zend_Auth::getInstance();
@@ -37,7 +39,7 @@ class AuthController extends Zend_Controller_Action
 			'users',
 			'username',
 			'password',
-			null
+			'SHA(?)'
 		);
 
 		$adapter->setIdentity($loginForm->getValue('username'));
@@ -46,6 +48,7 @@ class AuthController extends Zend_Controller_Action
 		$result = $auth->authenticate($adapter);
 
 		if ($result->isValid()) {
+			/* TODO: Store the user */
 			/*			
 			$data = $adapter->getResultRowObject(null, 'password');
 			$auth->getStorage()->write($data);
@@ -68,11 +71,4 @@ class AuthController extends Zend_Controller_Action
 	$auth->clearIdentity();
 	$this->_redirect('/');
     }
-
-
 }
-
-
-
-
-
