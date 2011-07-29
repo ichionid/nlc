@@ -5,14 +5,21 @@
 -- This file, when used in batch mode, is expected to set up the entire database
 -- for the nlc project. The user running this script must have grant access on
 -- database 'nlc'.
+--
+-- Usage: mysql -B -u root -p < schema.mysql.sql
+--
+-- Lines commented with --! are necessary if starting from scratch, but when
+-- reusing the script, they are superfluous.
 
 -- Database
-CREATE DATABASE nlc;
+--! CREATE DATABASE nlc;
 USE nlc;
 
 -- Users (the database users)
-CREATE USER 'nlc_user'@'localhost' IDENTIFIED BY 'newlifecopenhagen'
-CREATE USER 'nlc_user'@'%' IDENTIFIED BY 'newlifecopenhagen'
+--! CREATE USER 'nlc_user'@'localhost' IDENTIFIED BY 'newlifecopenhagen';
+--! CREATE USER 'nlc_user'@'%' IDENTIFIED BY 'newlifecopenhagen';
+
+-- TODO: Consider dividing users into to two categories
 -- CREATE USER 'nlc_admin'@'localhost' IDENTIFIED BY 'nlCOP11'
 -- CREATE USER 'nlc_admin'@'%' IDENTIFIED BY 'nlCOP11'
 
@@ -38,7 +45,7 @@ CREATE TABLE users (
 	-- 	first_name = 'Thomas'
 	--	last_names = 'Bracht Laumann Jespersen'
 	first_name VARCHAR(50) NOT NULL,
-	last_names VARCHAR(100) NOT NULL,
+	last_names VARCHAR(100) NULL,
 
 	-- role describes the users' role on the site
 	role ENUM("host", "guest") NOT NULL,
